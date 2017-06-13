@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">MVPTEST</string>
+    <string name="user_name">手机号</string>
+    <string name="password">密码</string>
+    <string name="password_config">确认密码</string>
+    <string name="get_code">获取验证码</string>
+    <string name="smscode">验证码</string>
+    <string name="sms_input">请输入验证码</string>
+    <string name="getting_smscode">验证码获取中...</string>
+    <string name="registering">注册中...</string>
+    <string name="register">注册</string>
+    <string name="log_in">登录</string>
+    <string name="login_failed">登录失败</string>
+    <string name="login_success">登录成功</string>
+    <string name="username_error">用户名不能为空</string>
+    <string name="username_incorrect">手机号码格式不正确</string>
+    <string name="password_error">密码不能为空</string>
+    <string name="password_incorrect">密码格式不正确</string>
+    <string name="password_not_equals">两次密码输入不一致</string>
+    <string name="smscode_send_success">验证码发送成功</string>
+    <string name="smscode_send_failed">验证码发送失败</string>
+    <string name="register_success">注册成功</string>
+    <string name="register_failed">注册失败</string>
+    <!--<string name=""></string>-->
+
+</resources>

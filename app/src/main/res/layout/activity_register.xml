@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:drawableLeft="@drawable/ic_action_person"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:hint="@string/user_name"
+        android:inputType="phone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/smscode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_action_accounts"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:hint="@string/smscode"
+            android:inputType="number"
+            android:maxLines="4" />
+
+        <Button
+            android:id="@+id/btn_smsCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:text="@string/get_code" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:drawableLeft="@drawable/ic_action_accounts"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/password_config"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:drawableLeft="@drawable/ic_action_accounts"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:hint="@string/password_config"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/register" />
+</LinearLayout>
