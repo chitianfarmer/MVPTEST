@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MVPTEST</string>
     <string name="user_name">手机号</string>
-    <string name="password">密码</string>
+    <string name="password">6-12位密码</string>
     <string name="password_config">确认密码</string>
     <string name="get_code">获取验证码</string>
     <string name="smscode">验证码</string>

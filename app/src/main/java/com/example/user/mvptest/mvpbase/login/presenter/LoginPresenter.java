@@ -1,6 +1,7 @@
 package com.example.user.mvptest.mvpbase.login.presenter;
 
 
+import android.os.Handler;
 import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSONObject;
@@ -28,7 +29,7 @@ public class LoginPresenter implements LoginContract.Prestener{
     }
 
     @Override
-    public void login(String userName, String password) {
+    public void login(final String userName, String password) {
         if (TextUtils.isEmpty(userName)) {
             loginView.setUserNameError();
             return;
@@ -46,29 +47,39 @@ public class LoginPresenter implements LoginContract.Prestener{
             return;
         }
         loginView.showLoginProgress();
-        HttpUtils.login(Configs.URL_LOGIN, userName, password, new StringCallback() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onError(Call call, Exception e, int id) {
+            public void run() {
                 loginView.hideLoginProgress();
-                loginView.loginFailed(e.getMessage());
+                loginView.loginSuccess(userName);
             }
+        },3000);
 
-            @Override
-            public void onResponse(String response, int id) {
-                loginView.hideLoginProgress();
-                JSONObject jsonObject = JSONObject.parseObject(response);
-                int code = jsonObject.getIntValue("code");
-                switch (code){
-                    case 1:
-                        JSONObject user = jsonObject.getJSONObject("user");
-                        loginView.loginSuccess(user.toJSONString());
-                        break;
-                    default:
-                        loginView.loginFailed("登录失败");
-                        break;
-                }
-            }
-        });
+//
+//
+//        HttpUtils.login(Configs.URL_LOGIN, userName, password, new StringCallback() {
+//            @Override
+//            public void onError(Call call, Exception e, int id) {
+//                loginView.hideLoginProgress();
+//                loginView.loginFailed(e.getMessage());
+//            }
+//
+//            @Override
+//            public void onResponse(String response, int id) {
+//                loginView.hideLoginProgress();
+//                JSONObject jsonObject = JSONObject.parseObject(response);
+//                int code = jsonObject.getIntValue("code");
+//                switch (code){
+//                    case 1:
+//                        JSONObject user = jsonObject.getJSONObject("user");
+//                        loginView.loginSuccess(user.toJSONString());
+//                        break;
+//                    default:
+//                        loginView.loginFailed("登录失败");
+//                        break;
+//                }
+//            }
+//        });
     }
 
     @Override

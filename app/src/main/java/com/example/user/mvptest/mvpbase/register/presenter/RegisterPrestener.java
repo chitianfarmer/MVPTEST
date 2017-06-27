@@ -1,5 +1,6 @@
 package com.example.user.mvptest.mvpbase.register.presenter;
 
+import android.os.Handler;
 import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSONObject;
@@ -32,7 +33,7 @@ public class RegisterPrestener implements RegisterContract.Prestener {
     }
 
     @Override
-    public void register(String mobile, String firstPassword, String secondPassword, String SMSCode) {
+    public void register(final String mobile, String firstPassword, String secondPassword, String SMSCode) {
         if (TextUtils.isEmpty(mobile)){
             registerView.setMobileError();
             return;
@@ -66,36 +67,43 @@ public class RegisterPrestener implements RegisterContract.Prestener {
             return;
         }
         registerView.showRegisterProgress();
-        HttpUtils.registerByPhone(Configs.URL_REGISTER, mobile, mobile, firstPassword, new StringCallback() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onError(Call call, Exception e, int id) {
-                registerView.registerFailed(e.getMessage());
+            public void run() {
                 registerView.hideRegisterProgress();
+                registerView.registerSuccess(mobile);
             }
-
-            @Override
-            public void onResponse(String response, int id) {
-                registerView.hideRegisterProgress();
-                JSONObject jsonObject = JSONObject.parseObject(response);
-                int code = jsonObject.getIntValue("code");
-                switch (code){
-                    case 1:
-                        JSONObject user = jsonObject.getJSONObject("user");
-                        String tel = user.getString("tel");
-                        registerView.registerSuccess(tel);
-                        break;
-                    case -1:
-                        registerView.registerFailed("该手机号已被注册");
-                        break;
-                    case -2:
-                        registerView.registerFailed("手机号码格式不正确");
-                        break;
-                    default:
-                        registerView.registerFailed("服务器繁忙请重试");
-                        break;
-                }
-            }
-        });
+        },3000);
+//        HttpUtils.registerByPhone(Configs.URL_REGISTER, mobile, mobile, firstPassword, new StringCallback() {
+//            @Override
+//            public void onError(Call call, Exception e, int id) {
+//                registerView.registerFailed(e.getMessage());
+//                registerView.hideRegisterProgress();
+//            }
+//
+//            @Override
+//            public void onResponse(String response, int id) {
+//                registerView.hideRegisterProgress();
+//                JSONObject jsonObject = JSONObject.parseObject(response);
+//                int code = jsonObject.getIntValue("code");
+//                switch (code){
+//                    case 1:
+//                        JSONObject user = jsonObject.getJSONObject("user");
+//                        String tel = user.getString("tel");
+//                        registerView.registerSuccess(tel);
+//                        break;
+//                    case -1:
+//                        registerView.registerFailed("该手机号已被注册");
+//                        break;
+//                    case -2:
+//                        registerView.registerFailed("手机号码格式不正确");
+//                        break;
+//                    default:
+//                        registerView.registerFailed("服务器繁忙请重试");
+//                        break;
+//                }
+//            }
+//        });
     }
 
     @Override
