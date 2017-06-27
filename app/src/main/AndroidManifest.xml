@@ -10,9 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!--主页-->
-        <activity android:name=".main.activity.MainActivity"/>
+        <activity android:name=".mvp.main.activity.MainActivity"/>
+        <!--主页-->
+        <activity android:name=".mvpbase.main.activity.Main2Activity"/>
+        <!--&lt;!&ndash;登录页&ndash;&gt;-->
+        <!--<activity android:name=".login.activity.LoginActivity">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+
         <!--登录页-->
-        <activity android:name=".login.activity.LoginActivity">
+        <activity android:name=".mvpbase.login.activity.Login2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,9 +31,11 @@
             </intent-filter>
         </activity>
         <!--注册页-->
-        <activity android:name=".register.activity.RegisterActivity"/>
+        <activity android:name=".mvp.register.activity.RegisterActivity"/>
+        <!--注册页-->
+        <activity android:name=".mvpbase.register.activity.Register2Activity"/>
         <!--视频播放页-->
-        <activity android:name=".main.activity.VideoPlayActivity"
+        <activity android:name=".config.VideoPlayActivity"
             android:theme="@style/AppTheme2"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="landscape"/>
