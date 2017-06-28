@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.example.user.mvptest"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -27,8 +27,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24+'
     testCompile 'junit:junit:4.12'
     compile 'com.github.DaysLater:AndroidUtils:v1.7'
-    compile 'com.android.support:recyclerview-v7:23+'
-    compile 'com.android.support:cardview-v7:23+'
+    compile 'com.android.support:recyclerview-v7:24+'
+    compile 'com.android.support:cardview-v7:24+'
     //节操
     compile 'fm.jiecao:jiecaovideoplayer:5.5.4'
 }

@@ -3,9 +3,7 @@ package com.example.user.mvptest.config;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-
 import com.example.user.mvptest.http.okhttputils.okhttp.OkHttpUtils;
-import com.example.user.utils.request.okhttp.OKHttpUtils;
 
 /**
  * 项目名称：MVPTEST
