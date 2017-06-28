@@ -18,13 +18,14 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 public interface VideoContract {
     interface View extends BaseView<Prestener>{
         void showToas(String message);
+        Context getContext();
         String getPlayUrl();
         String getVideoTitle();
         String getVideoImage();
         JSONObject getUrlJson();
     }
     interface Prestener extends BasePasenter{
-        void play(Context context, JCVideoPlayerStandard videoPlayerStandard, String url, String title, String imgUrl);
+        void play(JCVideoPlayerStandard videoPlayerStandard, String url, String title, String imgUrl);
         void release(JCVideoPlayerStandard jcVideoPlayerStandard);
     }
 }

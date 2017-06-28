@@ -1,6 +1,7 @@
 package com.example.user.mvptest.mvpbase.register.activity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -123,7 +124,7 @@ public class Register2Activity extends BaseActivity implements RegisterContract.
     @Override
     public void setMobileError() {
         mobile.setError(getString(R.string.username_error));
-        if (setTelCountTimer!=null){
+        if (setTelCountTimer != null) {
             setTelCountTimer.onFinish();
         }
     }
@@ -131,7 +132,7 @@ public class Register2Activity extends BaseActivity implements RegisterContract.
     @Override
     public void setMobileNotAllow() {
         mobile.setError(getString(R.string.username_incorrect));
-        if (setTelCountTimer!=null){
+        if (setTelCountTimer != null) {
             setTelCountTimer.onFinish();
         }
     }
@@ -184,29 +185,29 @@ public class Register2Activity extends BaseActivity implements RegisterContract.
 
     @Override
     public void sendSuccess(String result) {
-        LogUtils.d("发送验证码成功:"+result);
-        toast( getString(R.string.smscode_send_success));
+        LogUtils.d("发送验证码成功:" + result);
+        toast(getString(R.string.smscode_send_success));
     }
 
     @Override
     public void sendFailed(String errorMsg) {
-        LogUtils.d("发送验证码失败:"+errorMsg);
+        LogUtils.d("发送验证码失败:" + errorMsg);
         setTelCountTimer.onFinish();
-        toast( getString(R.string.smscode_send_failed));
+        toast(getString(R.string.smscode_send_failed));
     }
 
     @Override
     public void registerSuccess(String result) {
-        LogUtils.d("注册成功:"+result);
-        toast( getString(R.string.register_success));
+        LogUtils.d("注册成功:" + result);
+        toast(getString(R.string.register_success));
         setResult(RESULT_OK, new Intent().putExtra("mobile", result));
         finish();
     }
 
     @Override
     public void registerFailed(String errorMsg) {
-        LogUtils.d("注册失败:"+errorMsg);
-        toast(getString(R.string.register_failed)+","+errorMsg);
+        LogUtils.d("注册失败:" + errorMsg);
+        toast(getString(R.string.register_failed) + "," + errorMsg);
     }
 
     @Override
@@ -225,6 +226,11 @@ public class Register2Activity extends BaseActivity implements RegisterContract.
 
     @Override
     public void setPresenter(RegisterContract.Prestener presenter) {
-        this.pasenter=presenter;
+        this.pasenter = presenter;
+    }
+
+    @Override
+    public Context getContext() {
+        return getBaseContext();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.user.mvptest.mvpbase.login.activity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -129,6 +130,11 @@ public class Login2Activity extends BaseActivity implements LoginContract.View ,
     @Override
     public void setPresenter(LoginContract.Prestener presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public Context getContext() {
+        return getBaseContext();
     }
 
     @Override

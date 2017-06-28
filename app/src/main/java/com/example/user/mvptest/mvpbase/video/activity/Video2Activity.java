@@ -1,5 +1,6 @@
 package com.example.user.mvptest.mvpbase.video.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -54,7 +55,7 @@ public class Video2Activity extends BaseActivity implements VideoContract.View {
 
     private void initData() {
         prestener = new VideoPerstener(this);
-        prestener.play(this, videoplayer, getPlayUrl(), getVideoTitle(), getVideoImage());
+        prestener.play(videoplayer, getPlayUrl(), getVideoTitle(), getVideoImage());
     }
 
     private void setListener() {
@@ -85,6 +86,11 @@ public class Video2Activity extends BaseActivity implements VideoContract.View {
     @Override
     public void showToas(String message) {
         toast(message);
+    }
+
+    @Override
+    public Context getContext() {
+        return getBaseContext();
     }
 
     @Override

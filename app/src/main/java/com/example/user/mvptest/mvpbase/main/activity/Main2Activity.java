@@ -1,6 +1,7 @@
 package com.example.user.mvptest.mvpbase.main.activity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -122,6 +123,11 @@ public class Main2Activity extends BaseActivity implements MainContract.View , S
     @Override
     public void setPresenter(MainContract.Pasenter presenter) {
        this.pasenter = presenter;
+    }
+
+    @Override
+    public Context getContext() {
+        return getBaseContext();
     }
 
     @Override

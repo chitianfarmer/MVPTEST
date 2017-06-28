@@ -36,7 +36,7 @@ public class VideoPerstener implements VideoContract.Prestener {
     }
 
     @Override
-    public void play(Context context, JCVideoPlayerStandard videoPlayerStandard, String url, String title, String imgUrl) {
+    public void play(JCVideoPlayerStandard videoPlayerStandard, String url, String title, String imgUrl) {
         if (TextUtils.isEmpty(url)){
             videoView.showToas("播放地址不能为空");
             return;
@@ -44,7 +44,7 @@ public class VideoPerstener implements VideoContract.Prestener {
         videoPlayerStandard.setUp(url, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL,title);
         videoPlayerStandard.startButton.performClick();//设置自动播放
         videoPlayerStandard.setAllControlsVisible(View.GONE, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.VISIBLE);
-        GlideUtils.downLoadRoundTransform(context,imgUrl, videoPlayerStandard.thumbImageView, android.R.color.transparent, android.R.color.transparent);//设置播放时的
+        GlideUtils.downLoadRoundTransform(videoView.getContext(),imgUrl, videoPlayerStandard.thumbImageView, android.R.color.transparent, android.R.color.transparent);//设置播放时的
     }
 
     @Override

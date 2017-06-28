@@ -1,5 +1,7 @@
 package com.example.user.mvptest.mvpbase.base;
 
+import android.content.Context;
+
 /**
  * 项目名称：MVPTEST
  * 类描述：BaseView 描述:
@@ -9,4 +11,5 @@ package com.example.user.mvptest.mvpbase.base;
  */
 public interface BaseView<T> {
     void setPresenter(T presenter);
+    Context getContext();
 }
