@@ -1,4 +1,4 @@
-package com.example.user.mvptest.config;
+package com.example.user.mvptest.mvpbase.video.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,26 +8,27 @@ import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.user.mvptest.R;
+import com.example.user.mvptest.config.ActivityUtils;
+import com.example.user.mvptest.config.BaseActivity;
 import com.example.user.mvptest.http.okhttputils.okhttp.OkHttpUtils;
-import com.example.user.mvptest.mvpbase.video.activity.Video2Activity;
-import com.example.user.utils.media.GildeTools.GlideUtils;
-import com.example.user.utils.util.LogUtils;
+import com.example.user.mvptest.mvpbase.video.contract.VideoContract;
+import com.example.user.mvptest.mvpbase.video.prestener.VideoPerstener;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 /**
  * 项目名称：MVPTEST
- * 类描述：VideoPlayActivity 描述: 视频播放界面
+ * 类描述：Video2Activity 描述:视频播放界面
  * 创建人：songlijie
- * 创建时间：2017/6/13 17:19
+ * 创建时间：2017/6/28 10:53
  * 邮箱:814326663@qq.com
  */
-public class VideoPlayActivity extends BaseActivity {
+public class Video2Activity extends BaseActivity implements VideoContract.View {
     private JCVideoPlayerStandard videoplayer;
     private String videoString;
-    private JSONObject videoObject;
     private LinearLayout ll_back;
+    private VideoContract.Prestener prestener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,7 +45,6 @@ public class VideoPlayActivity extends BaseActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         videoString = getIntent().getStringExtra("result");
-        videoObject = JSONObject.parseObject(videoString);
     }
 
     private void initView() {
@@ -53,13 +53,8 @@ public class VideoPlayActivity extends BaseActivity {
     }
 
     private void initData() {
-        String url = videoObject.getString("url");
-        toast("视频地址:" + url);
-        LogUtils.d("视频地址:" + url);
-        videoplayer.setUp(url, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, videoObject.getString("title"));
-        videoplayer.startButton.performClick();
-        videoplayer.setAllControlsVisible(View.GONE, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.VISIBLE, View.VISIBLE);
-        GlideUtils.downLoadRoundTransform(this, videoObject.getString("img"), videoplayer.thumbImageView, android.R.color.transparent, android.R.color.transparent);
+        prestener = new VideoPerstener(this);
+        prestener.play(this, videoplayer, getPlayUrl(), getVideoTitle(), getVideoImage());
     }
 
     private void setListener() {
@@ -67,42 +62,68 @@ public class VideoPlayActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                VideoPlayActivity.this.finish();
+                Video2Activity.this.finish();
             }
         });
         videoplayer.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-                VideoPlayActivity.this.finish();
+                Video2Activity.this.finish();
             }
         });
         ll_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-                VideoPlayActivity.this.finish();
+                Video2Activity.this.finish();
             }
         });
     }
 
+
     @Override
-    protected void onResume() {
-        super.onResume();
+    public void showToas(String message) {
+        toast(message);
+    }
+
+    @Override
+    public JSONObject getUrlJson() {
+        return JSONObject.parseObject(videoString);
+    }
+
+    @Override
+    public String getPlayUrl() {
+        return getUrlJson().getString("url");
+    }
+
+    @Override
+    public String getVideoTitle() {
+        return getUrlJson().getString("title");
+    }
+
+    @Override
+    public String getVideoImage() {
+        return getUrlJson().getString("img");
+    }
+
+    @Override
+    public void setPresenter(VideoContract.Prestener presenter) {
+        this.prestener = presenter;
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         JCVideoPlayer.releaseAllVideos();
-        videoplayer.release();
+        prestener.release(videoplayer);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        videoObject = null;
         videoString = null;
+        prestener.onDestory();
         ActivityUtils.remove(this);
         OkHttpUtils.getInstance().cancelTag(this);
     }

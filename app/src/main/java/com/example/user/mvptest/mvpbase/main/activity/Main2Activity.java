@@ -18,6 +18,7 @@ import com.example.user.mvptest.mvp.main.adapter.MainAdapter;
 import com.example.user.mvptest.mvpbase.main.contract.MainContract;
 import com.example.user.mvptest.mvpbase.main.presenter.MainPresenter;
 import com.example.user.mvptest.mvp.main.view.SpacesItemDecoration;
+import com.example.user.mvptest.mvpbase.video.activity.Video2Activity;
 import com.example.user.utils.weight.swipyrefresh.SwipyRefreshLayout;
 
 import java.util.ArrayList;
@@ -115,7 +116,7 @@ public class Main2Activity extends BaseActivity implements MainContract.View , S
     @Override
     public void onItemOnClickResult(String reuslt) {
         //获取到直播信息 然后跳转
-        startActivity(new Intent(Main2Activity.this,VideoPlayActivity.class).putExtra("result",reuslt));
+        startActivity(new Intent(Main2Activity.this,Video2Activity.class).putExtra("result",reuslt));
     }
 
     @Override

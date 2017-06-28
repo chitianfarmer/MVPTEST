@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.user.mvptest">
+
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
@@ -10,16 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!--主页-->
-        <activity android:name=".mvp.main.activity.MainActivity"/>
+        <activity android:name=".mvp.main.activity.MainActivity" />
         <!--主页-->
-        <activity android:name=".mvpbase.main.activity.Main2Activity"/>
+        <activity android:name=".mvpbase.main.activity.Main2Activity" />
         <!--&lt;!&ndash;登录页&ndash;&gt;-->
         <!--<activity android:name=".login.activity.LoginActivity">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+        <!--<category android:name="android.intent.category.LAUNCHER" />-->
+        <!--</intent-filter>-->
         <!--</activity>-->
 
         <!--登录页-->
@@ -31,14 +32,21 @@
             </intent-filter>
         </activity>
         <!--注册页-->
-        <activity android:name=".mvp.register.activity.RegisterActivity"/>
+        <activity android:name=".mvp.register.activity.RegisterActivity" />
         <!--注册页-->
-        <activity android:name=".mvpbase.register.activity.Register2Activity"/>
+        <activity android:name=".mvpbase.register.activity.Register2Activity" />
         <!--视频播放页-->
-        <activity android:name=".config.VideoPlayActivity"
-            android:theme="@style/AppTheme2"
+        <activity
+            android:name=".config.VideoPlayActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme2" />
+        <!--视频播放页-->
+        <activity
+            android:name=".mvpbase.video.activity.Video2Activity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme2" />
     </application>
 
 </manifest>
