@@ -13,6 +13,7 @@ import com.example.user.mvptest.http.okhttputils.okhttp.OkHttpUtils;
  * 邮箱:814326663@qq.com
  */
 public class BaseActivity extends AppCompatActivity {
+    public String TAG = BaseActivity.class.getSimpleName();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.user.mvptest">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-sdk android:minSdkVersion="4"
+        android:targetSdkVersion="8"
+        tools:ignore="OldTargetApi"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -26,9 +36,9 @@
         <!--登录页-->
         <activity android:name=".mvpbase.login.activity.Login2Activity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+            <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <!--注册页-->
@@ -47,6 +57,33 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme2" />
+        <!--支付页面-->
+        <activity android:name=".mvpbase.pay.activity.PayActivity">
+        </activity>
+        <!--微信支付回调页-->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme2" >
+        </activity>
+        <!-- alipay sdk begin -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <!-- alipay sdk end -->
+
     </application>
 
 </manifest>

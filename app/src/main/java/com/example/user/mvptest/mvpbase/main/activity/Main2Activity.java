@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.alibaba.fastjson.JSONObject;
@@ -14,11 +16,11 @@ import com.example.user.mvptest.R;
 import com.example.user.mvptest.config.ActivityUtils;
 import com.example.user.mvptest.config.BaseActivity;
 import com.example.user.mvptest.http.okhttputils.okhttp.OkHttpUtils;
-import com.example.user.mvptest.config.VideoPlayActivity;
 import com.example.user.mvptest.mvp.main.adapter.MainAdapter;
 import com.example.user.mvptest.mvpbase.main.contract.MainContract;
 import com.example.user.mvptest.mvpbase.main.presenter.MainPresenter;
 import com.example.user.mvptest.mvp.main.view.SpacesItemDecoration;
+import com.example.user.mvptest.mvpbase.pay.activity.PayActivity;
 import com.example.user.mvptest.mvpbase.video.activity.Video2Activity;
 import com.example.user.utils.weight.swipyrefresh.SwipyRefreshLayout;
 
@@ -53,6 +55,7 @@ public class Main2Activity extends BaseActivity implements MainContract.View , S
     private void getData() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("主页");
+        actionBar.setDisplayShowCustomEnabled(true);
         pasenter = new MainPresenter(this);
         dialog = new ProgressDialog(this);
         dialog.setMessage("数据加载中...");
@@ -80,7 +83,11 @@ public class Main2Activity extends BaseActivity implements MainContract.View , S
         adapter.setOnItemClickListener(this);
     }
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
     @Override
     public void showLoadingDialog() {
@@ -142,6 +149,15 @@ public class Main2Activity extends BaseActivity implements MainContract.View , S
         //加载更多
         i++;
         pasenter.requestData(i,20);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.item_search){
+            startActivity(new Intent(Main2Activity.this,PayActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
