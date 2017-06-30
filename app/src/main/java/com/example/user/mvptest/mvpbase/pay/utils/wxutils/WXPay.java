@@ -30,7 +30,7 @@ public class WXPay {
     private static ProgressDialog dialog;
 
     /**
-     * 微信支付调用接口
+     * 微信支付网络支付调用接口 获取到服务器返回的订单号
      *
      * @param aty   activity
      * @param prepay_id  订单号
@@ -41,7 +41,7 @@ public class WXPay {
     }
 
     /**
-     * 微信支付网络接口
+     * 微信支付本地调用实现接口
      * @param aty  发起支付的activity
      * @param payFee  钱数/金额
      * @param payTitle 标题/说明

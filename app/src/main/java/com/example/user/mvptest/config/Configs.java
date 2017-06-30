@@ -43,6 +43,6 @@ public class Configs {
     /** RSA2_PRIVATE 可以保证商户交易在更加安全的环境下进行，建议使用 RSA2_PRIVATE */
     /** 获取 RSA2_PRIVATE，建议使用支付宝提供的公私钥生成工具生成， */
     /** 工具地址：https://doc.open.alipay.com/docs/doc.htm?treeId=291&articleId=106097&docType=1 */
-    public static final String ALIPAYRSA2_PRIVATE = "";
-    public static final String ALIPAYRSA_PRIVATE = "";
+    public static final String ALIPAYRSA2_PRIVATE ="";
+    public static final String ALIPAYRSA_PRIVATE ="";
 }
