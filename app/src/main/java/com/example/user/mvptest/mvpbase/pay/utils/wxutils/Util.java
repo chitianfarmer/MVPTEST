@@ -4,7 +4,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.net.Inet6Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
@@ -14,6 +18,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.net.ssl.SSLContext;
@@ -342,5 +347,36 @@ public class Util {
 			result.add(src[i]);
 		}
 		return result;
+	}
+
+	/**
+	 * 获取ip地址
+	 * @return
+	 */
+	public static String getHostIP() {
+		String hostIp = "127.0.0.1";
+		try {
+			Enumeration nis = NetworkInterface.getNetworkInterfaces();
+			InetAddress ia = null;
+			while (nis.hasMoreElements()) {
+				NetworkInterface ni = (NetworkInterface) nis.nextElement();
+				Enumeration<InetAddress> ias = ni.getInetAddresses();
+				while (ias.hasMoreElements()) {
+					ia = ias.nextElement();
+					if (ia instanceof Inet6Address) {
+						continue;// skip ipv6
+					}
+					String ip = ia.getHostAddress();
+					if (!"127.0.0.1".equals(ip)) {
+						hostIp = ia.getHostAddress();
+						break;
+					}
+				}
+			}
+		} catch (SocketException e) {
+			Log.i(TAG, "SocketException");
+			e.printStackTrace();
+		}
+		return hostIp;
 	}
 }

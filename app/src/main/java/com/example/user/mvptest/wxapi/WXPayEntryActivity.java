@@ -25,7 +25,7 @@ public class WXPayEntryActivity extends BaseActivity implements IWXAPIEventHandl
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pay_result);
-    	api = WXAPIFactory.createWXAPI(this, Configs.APPID);
+    	api = WXAPIFactory.createWXAPI(this, Configs.WXAPPID);
         api.handleIntent(getIntent(), this);
     }
 
@@ -45,7 +45,7 @@ public class WXPayEntryActivity extends BaseActivity implements IWXAPIEventHandl
 		Log.d(TAG, "onPayFinish, errCode = " + resp.errCode+"----errString:"+resp.errStr);
 		if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
 			LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent("WXPAY").putExtra("wxpay",String.valueOf(resp.errCode)));
+			finish();
 		}
-		finish();
 	}
 }

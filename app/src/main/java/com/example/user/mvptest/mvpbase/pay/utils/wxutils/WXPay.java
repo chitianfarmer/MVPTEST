@@ -297,7 +297,7 @@ public class WXPay {
         packageParams.add(new NameValuePair("out_trade_no",
                 genOutTradNo()));
         packageParams.add(new NameValuePair("spbill_create_ip",
-                "127.0.0.1"));
+                Util.getHostIP()));
         packageParams.add(new NameValuePair("total_fee", MathUtil.double2String(Double.valueOf(money))));
         packageParams.add(new NameValuePair("trade_type", "APP"));
         packageParams.add(new NameValuePair("sign", genPackageSign(packageParams)));
